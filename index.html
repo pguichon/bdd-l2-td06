@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>TD6</section>
+				<section>
+					<h4>Postgresql</h4>
+					<div>
+						se connecter à postgreql avec le password : temp
+						<pre><code class="bash" data-trim>
+						psql -U temp
+					</code></pre>
+						executer
+						<pre><code class="sql" data-trim>
+						 	CREATE USER numéro_etudiant;
+							ALTER ROLE numéro_etudiant WITH CREATEDB;
+							ALTER USER numéro_etudiant WITH ENCRYPTED
+							PASSWORD 'numéro_etudiant';
+							CREATE DATABASE numéro_etudiant OWNER numéro_etudiant;
+							\q
+					</code></pre>
+						se connecter à postgreql avec votre user pour vérifier que tout marche
+
+					</div>
+				</section>
+				<section>
+					<h4>Doccumentation</h4>
+					<div>http://docs.postgresql.fr/9.4/</div>
+					<div>http://docs.postgresql.fr/9.4/sql-commands.html</div>
+					<div>refaire le tuto précédent en faisant les modifications si nécessaire</div>
+				</section>
+				<section>
+					<h4>exo 1</h4>
+					<div>
+						Soit la table individu, adresse, pays
+						créer une view avec id, nom, prenom, label commune, cod postal, pays
+						dans le fichier python implémenter afficher_individu_adresses
+					</div>
+				</section>
+
+				<section>
+					<h4>exo 2</h4>
+					<div>Créer la fontion de recherche d'un individu en fonction de son email. <br>
+						Vous devrez implementer une fonction qui va demander un email à l'utilisateur, appeler la fonction
+						rechercher_un_individu qui retourne un dictionnaire de la forme {'id': "", 'nom': "", 'prenom':'',
+						'email': ''}
+						et affichier son nom et prénom
+					</div>
+					<div>Créer une fonction de recherche de l'adresse d'un individu dans la view en utilisant la fonction précédente</div>
+				</section>
+				<section>
+					<h4>exo 3</h4>
+					<div>Créer un trigger dans init.sql qui tranforme le nom et le prénom en UPPER à l'insertion d'un individu</div>
+					<div>créer une fonction qui permet d'ajouter un individu</div>
+					<div>Bonus pour un individu ajouter une adresse (en proposant les communes)</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
